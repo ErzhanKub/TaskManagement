@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task_Meneger.Controllers.Additional_settings
+namespace Task_Meneger.Controllers.DataBase
 {
-    internal class DataBase
+    internal class DataBaseMethodsForUsers
     {
     }
 }
