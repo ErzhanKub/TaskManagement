@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_Meneger.Enums
 {
-    internal class Status
+    public enum Status
     {
     }
 }

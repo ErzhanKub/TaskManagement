@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Task_Meneger.Controllers.DataBase
 {
-    internal class DataBaseMethodsForUsers
+    public class DataBaseMethodsForUsers
     {
+        private readonly string _connection;
+        public DataBaseMethodsForUsers(string connectionString)
+        {
+            _connection = connectionString;
+        }
     }
 }

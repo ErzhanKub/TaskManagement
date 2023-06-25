@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_Meneger.Enums
 {
-    internal class Priority
+    public enum Priority
     {
     }
 }
