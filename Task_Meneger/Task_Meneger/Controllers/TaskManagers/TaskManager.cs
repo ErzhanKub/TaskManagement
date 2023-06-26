@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_Meneger.Controllers.TaskManager
 {
-    internal class TaskManager
+    public class TaskManager
     {
     }
 }

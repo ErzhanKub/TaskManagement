@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_Meneger.Apps
 {
-    internal class ReleaseApp
+    public class ReleaseApp
     {
     }
 }

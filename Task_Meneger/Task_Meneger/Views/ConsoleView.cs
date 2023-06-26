@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_Meneger.Views
 {
-    internal class ConsoleView
+    public class ConsoleView
     {
     }
 }
