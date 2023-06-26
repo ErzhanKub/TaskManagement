@@ -21,7 +21,7 @@ namespace Task_Meneger.Controllers.DataBase
         {
             using var connection = new SqlConnection(_connection);
             {
-                var sqlcode = "";
+                var sqlcode = "SELECT * FROM Users";
                 var tasks = await connection.QueryAsync<MyTask>(sqlcode);
                 return tasks;
             }

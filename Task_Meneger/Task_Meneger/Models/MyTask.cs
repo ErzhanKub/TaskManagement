@@ -23,13 +23,12 @@ namespace Task_Meneger.Models
                 _name = value;
             }
         }
-        public string Description { get; set; } = string.Empty;
-        public DateTime CreatedDate { get; set; }
+        public string Description { get; set; } = string.Empty;    
+        public DateTime StartTask { get; set; }
         public Status Status { get; set; }
         public Priority Priority { get; set; }
         public DateTime Deadline { get; set; }
         public List<string>? Tags { get; set; }
-        public List<string>? Comments { get; set; }
 
         public override string ToString() => $"";
         
