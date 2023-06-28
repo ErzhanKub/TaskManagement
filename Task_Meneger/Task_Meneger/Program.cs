@@ -1,11 +1,17 @@
-﻿using Task_Meneger.Apps;
+﻿using System.Text;
+using Task_Meneger.Apps;
 using Task_Meneger.Controllers.DataBase;
 
-public class Program
+namespace AppProgram
 {
-    public static void Main(string[] args)
+    public class Program
     {
-        TestApp app = new TestApp();
-        app.Start();
+        public static  void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.InputEncoding = Encoding.Unicode;
+            TestApp app = new TestApp();
+            app.Start();
+        }
     }
 }

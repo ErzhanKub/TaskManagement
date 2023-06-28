@@ -8,33 +8,43 @@ namespace Task_Meneger.Models
 {
     public class User
     {
+        /// <summary>
+        /// ID пользователя.
+        /// </summary>
         public int Id { get; private set; }
-
-        private string _firstname;
-        private string _lastname;
+        /// <summary>
+        /// Имя пользователя.
+        /// </summary>
+        private string _firstName;
+        /// <summary>
+        /// Фамилия пользователя.
+        /// </summary>
+        private string _lastName;
+        /// <summary>
+        /// Логин пользователя.
+        /// </summary>
         private string _login;
         public string FirstName
         {
-            get => _firstname;
-            set
+            get => _firstName; set
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("Имя не можеть быть пустым", nameof(value));
+                    throw new ArgumentNullException("Имя не может быть пустым", nameof(value));
                 }
-                _firstname = value;
+                _firstName = value;
             }
         }
         public string LastName
         {
-            get => _lastname;
+            get => _lastName;
             set
             {
                 if (value == null)
                 {
                     throw new ArgumentNullException("Фамилия не может быть пустым", nameof(value));
                 }
-                _lastname = value;
+                _lastName = value;
             }
         }
         public string Login
@@ -49,12 +59,23 @@ namespace Task_Meneger.Models
                 _login = value;
             }
         }
-        public int Password { get;  set; }//Закрыть доступ
+        /// <summary>
+       /// Пароль пользователя.
+       /// </summary>
+        public int Password { get; private set; }
+        /// <summary>
+        /// Email.
+        /// </summary>
         public string Email { get; set; } = string.Empty;
+        /// <summary>
+        /// Тел. номер.
+        /// </summary>
         public string Phone { get; set; } = string.Empty;
         public override string ToString()
         {
-            return base.ToString(); //Изменить
+            return $"Имя: {_firstName} | Фамилия: {_lastName}." +
+                $"\nLogin: {Login} | Password: {Password}." +
+                $"\nEmail: {Email} | Тел. номер: {Phone}."; 
         }
 
     }

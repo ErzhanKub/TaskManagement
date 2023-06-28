@@ -8,5 +8,6 @@ namespace Task_Meneger.Enums
 {
     public enum Status
     {
+
     }
 }

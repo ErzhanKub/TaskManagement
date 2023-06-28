@@ -9,9 +9,15 @@ namespace Task_Meneger.Models
 {
     public class MyTask
     {
+        /// <summary>
+        /// ID задачи.
+        /// </summary>
         public int Id { get; private set; }
+        /// <summary>
+        /// Имя пользователя.
+        /// </summary>
         private string _name;
-        public string Name
+        public string NameTask
         {
             get => _name;
             set
@@ -23,14 +29,32 @@ namespace Task_Meneger.Models
                 _name = value;
             }
         }
-        public string Description { get; set; } = string.Empty;    
+        /// <summary>
+        /// Описание задачи.
+        /// </summary>
+        public string Description { get; set; } = string.Empty;
+        /// <summary>
+        /// Время началы задачи.
+        /// </summary>
         public DateTime StartTask { get; set; }
-        public Status Status { get; set; }
-        public Priority Priority { get; set; }
-        public DateTime Deadline { get; set; }
-        public List<string>? Tags { get; set; }
-
-        public override string ToString() => $"";
+        /// <summary>
+        /// Статус задачи.
+        /// </summary>
+        public int Status { get; set; }
+        /// <summary>
+        /// Приоритет задачи.
+        /// </summary>
         
+        public int Priority_Id { get; set; }
+        /// <summary>
+        /// Дедлайн задачи.
+        /// </summary>
+        public DateTime Deadline { get; set; }
+    
+        public override string ToString() => $"Id задачи: {Id} | Название задачи: {_name}" +
+                                          $"\nОписание: {Description}." +
+                                          $"\nНачало: {StartTask} | Dealine: {Deadline}." +
+                                          $"\nСтатус: {Status} | Приоритет: {Priority_Id}.";
+
     }
 }
