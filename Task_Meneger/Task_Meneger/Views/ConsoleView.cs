@@ -8,5 +8,6 @@ namespace Task_Meneger.Views
 {
     public class ConsoleView
     {
+      
     }
 }

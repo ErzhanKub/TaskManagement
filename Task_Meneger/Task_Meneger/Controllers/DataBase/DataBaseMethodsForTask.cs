@@ -35,7 +35,10 @@ namespace Task_Meneger.Controllers.DataBase
                 return (List<MyTask>)tasks;
             }
         }
-       
+       /// <summary>
+       /// Метод удаление пользователя.
+       /// </summary>
+       /// <param name="id"></param>
         public void DeleteTask(int id)
         {
             using var connection = new SqlConnection(_connection);
@@ -48,16 +51,19 @@ namespace Task_Meneger.Controllers.DataBase
         {
             using var connection = new SqlConnection(_connection);
             {
-                var sqlcode = $"UPDATE Tasks SET NameTask = '{task.NameTask}', [Description] = '{task.Description}', StartTask = '{task.StartTask}', Deadline = '{task.Deadline}', UserId = 1, [Priority_Id] = {task.Priority_Id}, [Status_Id] = {task.Status} WHERE Id = {id}";
+                var sqlcode = $"UPDATE Tasks SET NameTask = N'{task.NameTask}', [Description] = N'{task.Description}', " +
+                    $"StartTask = '{task.StartTask}', Deadline = '{task.Deadline}', UserId = 1, " +
+                    $"[Priority_Id] = {task.Priority_Id}, [Status_Id] = {task.Status} WHERE Id = {id}";
                 connection.Execute(sqlcode, new {task.NameTask,task.Description,id});
             }
         }
-        public void AddTask(MyTask task) //TODO: Доработать
+        public void AddTask(MyTask task, int id)
         {
             using var connection = new SqlConnection(_connection);
             {
-                var sqlcode = "";
-                connection.Execute(sqlcode);
+                var sqlcode = $"INSERT INTO Tasks " +
+                    $"VALUES (N'{task.NameTask}',N'{task.Description}','{task.StartTask}','{task.Deadline}',{id},{task.Priority_Id},{task.Status})";
+                connection.Execute(sqlcode, new {task.NameTask,task.Description,task.StartTask,task.Deadline,id,task.Priority_Id,task.Status});
             }
         }
     }
