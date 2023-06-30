@@ -30,42 +30,58 @@ namespace Task_Meneger.Controllers.DataBase
         /// Метод для получения всех пользователей.
         /// </summary>
         /// <returns> List<Users>. </returns>
-        public List<User> GetAllUsers()
+        public async Task<List<User>> GetAllUsersAsync()
         {
             using var connection = new SqlConnection(_connection);
             {
                 var sqlcode = "SELECT * FROM Users";
-                var users = connection.Query<User>(sqlcode);
+                var users = await connection.QueryAsync<User>(sqlcode);
                 return (List<User>)users;
             }
         }
-       /// <summary>
-       /// Метод для удаления пользователя.
-       /// </summary>
-       /// <param name="id"></param>
-       /// <returns></returns>
-        public bool DeleteUser(long id)
+        /// <summary>
+        /// Метод для удаления пользователя.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task DeleteUserAsync(long id)
         {
             using var connection = new SqlConnection(_connection);
             {
-                var sqlcode = $"DELETE FROM Users WHERE Id = {id}";
-                connection.Execute(sqlcode);
-                return true;
+                var sqlcode = "DELETE FROM Users WHERE Id = @Id";
+                await connection.ExecuteAsync(sqlcode, new { id });
             }
         }
+
         /// <summary>
         /// Метод для добавления нового пользователя
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public bool AddUser(User user)
+        public async Task AddUserAsync(User user)
         {
             using var connection = new SqlConnection(_connection);
             {
-                var sqlcode = $"INSERT Users VALUES (N'{user.FirstName}',N'{user.LastName}',N'{user.Login}',{user.Password},N'{user.Email}',N'{user.Phone}') ";
-                connection.Execute(sqlcode);
-                return true;
+                var sqlcode = "INSERT INTO Users (FirstName, LastName, [Login], [Password], Email, Phone) VALUES (@FirstName, @LastName, @Login, @Password, @Email, @Phone)";
+                await connection.ExecuteAsync(sqlcode, new { user.FirstName, user.LastName, user.Login, user.Password, user.Email, user.Phone });
             }
         }
+
+        /// <summary>
+        /// Метод для изменения пользователя
+        /// </summary>
+        /// <param User="user"></param>
+        /// <param Id="id"></param>
+        /// <returns></returns>
+        public async Task EditUserAsync(User user, long id)
+        {
+            using var connection = new SqlConnection(_connection);
+            {
+                var sqlcode = "UPDATE Users SET FirstName = @FirstName, LastName = @LastName, [Login] = @Login, [Password] = @Password, Email = @Email, Phone = @Phone WHERE Id = @Id";
+                await connection.ExecuteAsync(sqlcode, new { user.FirstName, user.LastName, user.Login, user.Password, user.Email, user.Phone, id });
+            }
+        }
+
     }
+
 }

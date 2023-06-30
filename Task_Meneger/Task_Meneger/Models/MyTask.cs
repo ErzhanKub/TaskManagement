@@ -55,6 +55,10 @@ namespace Task_Meneger.Models
                                           $"\nОписание: {Description}." +
                                           $"\nНачало: {StartTask} | Dealine: {Deadline}." +
                                           $"\nСтатус: {Status} | Приоритет: {Priority_Id}.";
-
+        public Priority trans()
+        {
+            Priority prio = (Priority)Priority_Id;
+            return prio;
+        }
     }
 }

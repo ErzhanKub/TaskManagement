@@ -26,45 +26,66 @@ namespace Task_Meneger.Controllers.DataBase
         /// Метод для получения всех задач.
         /// </summary>
         /// <returns> List<Users>. </returns>
-        public List<MyTask> GetAllTask()
+        public async Task<List<MyTask>> GetAllTasksAsync(int userId)
+        {
+            using var connection = new SqlConnection(_connection);
+            {
+                var sqlcode = "SELECT * FROM Tasks WHERE UserId = @UserId";
+                var tasks = await connection.QueryAsync<MyTask>(sqlcode, new { userId });
+                return (List<MyTask>)tasks;
+            }
+        }
+        public async Task<List<MyTask>> GetAllUserTasksAsync(int userId)
         {
             using var connection = new SqlConnection(_connection);
             {
                 var sqlcode = "SELECT * FROM Tasks";
-                var tasks = connection.Query<MyTask>(sqlcode);
+                var tasks = await connection.QueryAsync<MyTask>(sqlcode, new { userId });
                 return (List<MyTask>)tasks;
             }
         }
-       /// <summary>
-       /// Метод удаление пользователя.
-       /// </summary>
-       /// <param name="id"></param>
-        public void DeleteTask(int id)
+
+        /// <summary>
+        /// Метод удаление пользователя.
+        /// </summary>
+        /// <param name="id"></param>
+        public async Task DeleteTaskAsync(int id, int userId)
         {
             using var connection = new SqlConnection(_connection);
             {
-                var sqlcode = $"DELETE FROM Tasks WHERE Id = {id}";
-                connection.Execute(sqlcode, new {Id = id});
+                var sqlcode = "DELETE FROM Tasks WHERE Id = @Id AND UserId = @UserId";
+                await connection.ExecuteAsync(sqlcode, new { id, userId });
             }
         }
-        public void EditTask(MyTask task, int id)
+        /// <summary>
+        /// Изменение задачи
+        /// </summary>
+        /// <param Задача="task"></param>
+        /// <param Id задачи="id"></param>
+        /// <param Id пользователя="userId"></param>
+        public async Task EditTaskAsync(MyTask task, int id, int userId)
         {
             using var connection = new SqlConnection(_connection);
             {
-                var sqlcode = $"UPDATE Tasks SET NameTask = N'{task.NameTask}', [Description] = N'{task.Description}', " +
-                    $"StartTask = '{task.StartTask}', Deadline = '{task.Deadline}', UserId = 1, " +
-                    $"[Priority_Id] = {task.Priority_Id}, [Status_Id] = {task.Status} WHERE Id = {id}";
-                connection.Execute(sqlcode, new {task.NameTask,task.Description,id});
+                var sqlcode = "UPDATE Tasks SET NameTask = @NameTask, [Description] = @Description, StartTask = @StartTask, Deadline = @Deadline, UserId = @UserId, [Priority_Id] = @Priority_Id, [Status_Id] = @Status WHERE Id = @Id AND UserId = @UserId";
+                await connection.ExecuteAsync(sqlcode, new { task.NameTask, task.Description, task.StartTask, task.Deadline, userId, task.Priority_Id, task.Status, id });
             }
         }
-        public void AddTask(MyTask task, int id)
+
+        /// <summary>
+        /// Добавить задачу
+        /// </summary>
+        /// <param Задача="task"></param>
+        /// <param Id пользователя="userId"></param>
+        public async Task AddTaskAsync(MyTask task, int userId)
         {
             using var connection = new SqlConnection(_connection);
             {
-                var sqlcode = $"INSERT INTO Tasks " +
-                    $"VALUES (N'{task.NameTask}',N'{task.Description}','{task.StartTask}','{task.Deadline}',{id},{task.Priority_Id},{task.Status})";
-                connection.Execute(sqlcode, new {task.NameTask,task.Description,task.StartTask,task.Deadline,id,task.Priority_Id,task.Status});
+                var sqlcode = "INSERT INTO Tasks (NameTask, [Description], StartTask, Deadline, UserId, [Priority_Id], [Status_Id]) VALUES (@NameTask, @Description, @StartTask, @Deadline, @UserId, @Priority_Id, @Status)";
+                await connection.ExecuteAsync(sqlcode, new { task.NameTask, task.Description, task.StartTask, task.Deadline, userId, task.Priority_Id, task.Status });
             }
         }
+
     }
+
 }

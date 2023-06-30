@@ -15,7 +15,7 @@ namespace Task_Meneger.Helpers
         /// <returns></returns>
         public static string ReadString(string text)
         {
-            Console.WriteLine(text);
+            Console.Write(text);
             var input = Console.ReadLine();
             if (input != null) return input;
             else throw new ArgumentNullException("Пустая сторка", nameof(input));
@@ -28,7 +28,7 @@ namespace Task_Meneger.Helpers
         /// <returns></returns>
         public static int ReadInt(string text)
         {
-            Console.WriteLine(text);
+            Console.Write(text);
             return int.Parse(Console.ReadLine());
         }
     }

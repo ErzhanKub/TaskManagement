@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task_Meneger.Enums
+namespace Task_Meneger.Controllers.Additional_settings
 {
-    public enum Status
+    public class ForAdmin
     {
-        InProgress = 1,
-        NotYetStarted,
-        Done,
-        Closed
     }
 }

@@ -12,6 +12,7 @@ namespace AppProgram
             Console.InputEncoding = Encoding.Unicode;
             TestApp app = new TestApp();
             app.Start();
+
         }
     }
 }
