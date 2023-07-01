@@ -16,7 +16,7 @@ namespace Task_Meneger.Apps
         {
             var af = new Authorization();
             af.ReadPassword();
-            var task = new TaskManager(5);
+            var task = new TaskManager(5, "Server=.; Database=MyDiary; Trusted_Connection=Yes; Encrypt=Optional");
             task.AddNewTask();
         }
     }

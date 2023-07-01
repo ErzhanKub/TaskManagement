@@ -11,6 +11,9 @@ namespace Task_Meneger.Enums
         InProgress = 1,
         NotYetStarted,
         Done,
-        Closed
+        Closed,
+        New ,
+        Delayed,
+        Draft
     }
 }

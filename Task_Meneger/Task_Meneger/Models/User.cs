@@ -62,7 +62,7 @@ namespace Task_Meneger.Models
         /// <summary>
        /// Пароль пользователя.
        /// </summary>
-        public string Password { get; private set; }
+        public string Password { get;  set; }
         /// <summary>
         /// Email.
         /// </summary>

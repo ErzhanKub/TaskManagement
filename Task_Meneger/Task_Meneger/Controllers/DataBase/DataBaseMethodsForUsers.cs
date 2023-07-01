@@ -44,7 +44,7 @@ namespace Task_Meneger.Controllers.DataBase
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task DeleteUserAsync(long id)
+        public async Task RemoveUserAsync(long id)
         {
             using var connection = new SqlConnection(_connection);
             {
@@ -81,7 +81,18 @@ namespace Task_Meneger.Controllers.DataBase
                 await connection.ExecuteAsync(sqlcode, new { user.FirstName, user.LastName, user.Login, user.Password, user.Email, user.Phone, id });
             }
         }
-
+        /// <summary>
+        /// Метод sql для получения пользователя по Login
+        /// </summary>
+        /// <param name="name"></param>
+        public async Task<User> GetUserByLogin(string login)
+        {
+            using (var connection = new SqlConnection(_connection))
+            {
+                var sqlcode = "SELECT * FROM Users WHERE Login = @login";
+                return await connection.QueryFirstOrDefaultAsync<User>(sqlcode, new { login });
+            }
+        }
     }
 
 }

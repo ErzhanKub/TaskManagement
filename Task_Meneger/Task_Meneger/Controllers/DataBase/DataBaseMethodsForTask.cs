@@ -49,7 +49,7 @@ namespace Task_Meneger.Controllers.DataBase
         /// Метод удаление пользователя.
         /// </summary>
         /// <param name="id"></param>
-        public async Task DeleteTaskAsync(int id, int userId)
+        public async Task RemoveTaskAsync(int id, int userId)
         {
             using var connection = new SqlConnection(_connection);
             {
