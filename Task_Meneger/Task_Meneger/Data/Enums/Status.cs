@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task_Meneger.Enums
+namespace Task_Meneger.Data.Enums
 {
     public enum Status
     {
@@ -12,7 +12,7 @@ namespace Task_Meneger.Enums
         NotYetStarted,
         Done,
         Closed,
-        New ,
+        New,
         Delayed,
         Draft
     }

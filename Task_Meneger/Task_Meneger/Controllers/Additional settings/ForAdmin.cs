@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task_Meneger.Controllers.Additional_settings
 {
-    public class ForAdmin
+    public class ForAdmin //TODO: Реализовать.
     {
     }
 }

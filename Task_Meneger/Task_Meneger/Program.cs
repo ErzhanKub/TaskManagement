@@ -1,16 +1,22 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Text;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Task_Meneger.Apps;
-using Task_Meneger.Controllers.Additional_settings.Connection;
 using Task_Meneger.Controllers.DataBase;
-using Task_Meneger.Controllers.TaskManager;
+using Task_Meneger.Data.EFBase;
+using Task_Meneger.Interface;
+using Task_Meneger.Services.TaskManagers;
+using Task_Meneger.Services.UserManagers;
 
-Console.OutputEncoding = Encoding.Unicode;
-Console.InputEncoding = Encoding.Unicode;
+//TODO: Закончить проект - проверка на паттерны SOLID - Расширить функциональность.
 
-var con = new Connection();
-//ReleaseApp app = new ReleaseApp(con.Start());
-//await app.Start();
-var task = new TaskManager(1,con.Start());
-task.AddNewTask();
+var services = new ServiceCollection();
+services.AddDbContext<AppDbContext>();
+services.AddSingleton<ReleaseApp>();
+services.AddScoped<DbMethodsForTasks>();
+services.AddScoped<DbMethodsForUsers>();
+services.AddScoped<ITaskMenegement, TaskManagement>();
+services.AddScoped<IUserManagement, UserManagement>();
+var serviceProvider = services.BuildServiceProvider();
 
+
+var releaseApp = serviceProvider.GetService<ReleaseApp>();
+await releaseApp.Start();

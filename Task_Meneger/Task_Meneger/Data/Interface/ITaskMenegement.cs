@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Task_Meneger.Interface
 {
-    interface ITaskMeneger
+    interface ITaskMenegement
     {
-        public void AddTask() { }
-        public void RemoveTask() { }
-        public void EditTask() { }
-        public void GetTasks() { }
+        Task AddTaskAsync();
+        Task RemoveTaskAsync();
+        Task UpdateTaskAsync();
+        Task GetAllTasksAsync();
     }
 }

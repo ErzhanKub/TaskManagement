@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task_Meneger.Enums
+namespace Task_Meneger.Data.Enums
 {
     public enum Priority
     {
